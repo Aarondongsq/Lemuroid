@@ -1,7 +1,7 @@
-name: Build APK Now
+name: Build Lemuroid APK
 
-on: 
-  workflow_dispatch: # 这个配置允许您手动触发工作流
+on:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -22,10 +22,13 @@ jobs:
       run: chmod +x ./gradlew
 
     - name: Build APK
-      run: ./gradlew assembleDebug
+      run: ./gradlew assembleFreeBundleDebug # 使用方案A
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
-        name: MyApp-Debug
-        path: app/build/outputs/apk/debug/*.apk
+        name: Lemuroid-Debug-APK
+        path: lenuroid-app/build/outputs/apk/freeBundle/debug/*.apk
+        # 注意：APK路径也变了！因为风味组合变了。
+        # 路径模式通常是: <module>/build/outputs/apk/<flavor1><flavor2>/<buildType>/*.apk
+        # 如果不确定，构建成功后可以在日志里搜索 ".apk" 来找到准确路径。
