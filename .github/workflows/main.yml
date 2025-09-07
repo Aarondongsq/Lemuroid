@@ -16,8 +16,11 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Setup Android SDK
+    - name: Setup Android NDK
       uses: android-actions/setup-android@v3
+      with:
+       ndk: true
+       ndk-version: "25.1.8937393" # 使用一个较新的NDK版本
 
     - name: Make Gradle executable
       run: chmod +x ./gradlew
